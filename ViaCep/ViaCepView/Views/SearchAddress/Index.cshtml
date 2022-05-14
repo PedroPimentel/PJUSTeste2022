@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Via CEP";
+}
+
+<head>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/searchaddress/index.js"></script>
+    <script src="~/js/toastr.min.js"></script>
+    <link href="~/css/searchaddress/searchaddress.css" rel="stylesheet" />
+    <link href="~/css/toastr.min.css" rel="stylesheet" />
+</head>
+
+<div class="text-center">
+
+    <br />
+    <h1 class="display-4">Busca CEP</h1>
+
+    <br />
+
+    <form>
+        <div class="form-row">
+            <div class="col">
+                <input type="number" class="form-control" id="numCep" name="cep" placeholder="Insira o CEP">
+                <label id="errorCep" class="error"></label>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary btnSearch" onclick="verify()">Consultar</button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+    <div class="card cardAlign" id="cardSuccess">
+        <div class="card-body">
+            <p id="district"></p>
+            <p id="cep"></p>
+            <p id="complement"></p>
+            <p id="ddd"></p>
+            <p id="gia"></p>
+            <p id="ibge"></p>
+            <p id="locality"></p>
+            <p id="publicPlace"></p>
+            <p id="siaf"></p>
+            <p id="uf"></p>
+        </div>
+    </div>
+
+    <div class="card cardAlign" id="cardError">
+        <div class="card-body">
+            <p id="responseError"></p>
+        </div>
+    </div>
+
+</div>
+
+<input type="hidden" id="baseAddressApi" value="@ViewBag.baseAddressApi" />
+
+<script type="text/javascript">
+    document.getElementById("errorCep").style.display = 'none';
+    document.getElementById("cardSuccess").style.display = 'none';
+    document.getElementById("cardError").style.display = 'none';
+
+    $(document).ready(function () {
+        baseAddressApi = $("#baseAddressApi").val();
+    });
+</script>
+
+
